@@ -18,7 +18,7 @@ const About: React.FC = () => {
               </p>
             </div>
             
-            <div className="mbti-card mb-10">
+            <div className="mbti-card">
               <h2 className="text-2xl font-semibold mb-4">Misi Kami</h2>
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start">
@@ -38,27 +38,6 @@ const About: React.FC = () => {
                   <span>Menciptakan komunitas yang saling memahami dan menghargai perbedaan kepribadian</span>
                 </li>
               </ul>
-            </div>
-            
-            <div className="mbti-card">
-              <h2 className="text-2xl font-semibold mb-4">Tim Kami</h2>
-              <p className="text-gray-700 mb-6">
-                Ruang Edukasi didirikan oleh tim psikolog dan pendidik berpengalaman yang berdedikasi untuk 
-                membuat ilmu psikologi lebih mudah diakses oleh masyarakat Indonesia. Tim kami terdiri dari:
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="text-center">
-                  <div className="w-24 h-24 rounded-full bg-mbti-blue mx-auto mb-4"></div>
-                  <h3 className="font-semibold">Dr. Andi Wijaya</h3>
-                  <p className="text-gray-600">Psikolog Klinis</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-24 h-24 rounded-full bg-mbti-purple mx-auto mb-4"></div>
-                  <h3 className="font-semibold">Sinta Dewi, M.Psi</h3>
-                  <p className="text-gray-600">Ahli Psikometri</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

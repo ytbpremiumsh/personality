@@ -37,6 +37,18 @@ const Test: React.FC = () => {
     }
   };
 
+  const handleNextQuestion = () => {
+    // Show a toast notification if no answer for current question
+    if (!answers[currentQuestionIndex]) {
+      toast.warning("Harap jawab pertanyaan terlebih dahulu");
+      return;
+    }
+    
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
+
   const calculateMbtiType = (answers: Record<string, string>): string => {
     // Count occurrences of each letter
     let counts = {
@@ -85,14 +97,14 @@ const Test: React.FC = () => {
               
               <div className="space-y-4">
                 <button
-                  className="w-full text-left p-4 rounded-lg border border-gray-200 hover:bg-mbti-purple hover:border-mbti-deep-purple transition-all duration-200"
+                  className={`w-full text-left p-4 rounded-lg border ${answers[currentQuestionIndex] === currentQuestion.options.a.type ? 'bg-mbti-purple border-mbti-deep-purple' : 'border-gray-200 hover:bg-mbti-purple hover:border-mbti-deep-purple'} transition-all duration-200`}
                   onClick={() => handleAnswer(currentQuestion.options.a.type)}
                 >
                   <span className="font-medium">A:</span> {currentQuestion.options.a.text}
                 </button>
                 
                 <button
-                  className="w-full text-left p-4 rounded-lg border border-gray-200 hover:bg-mbti-purple hover:border-mbti-deep-purple transition-all duration-200"
+                  className={`w-full text-left p-4 rounded-lg border ${answers[currentQuestionIndex] === currentQuestion.options.b.type ? 'bg-mbti-purple border-mbti-deep-purple' : 'border-gray-200 hover:bg-mbti-purple hover:border-mbti-deep-purple'} transition-all duration-200`}
                   onClick={() => handleAnswer(currentQuestion.options.b.type)}
                 >
                   <span className="font-medium">B:</span> {currentQuestion.options.b.text}
@@ -109,13 +121,13 @@ const Test: React.FC = () => {
                   Sebelumnya
                 </button>
                 
-                {/* Skip button (optional) */}
+                {/* Next button (replacing the Skip button) */}
                 {currentQuestionIndex < questions.length - 1 && (
                   <button
-                    className="text-gray-500 hover:text-mbti-deep-purple transition-colors"
-                    onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)}
+                    className="mbti-button-secondary"
+                    onClick={handleNextQuestion}
                   >
-                    Lewati
+                    Selanjutnya
                   </button>
                 )}
               </div>
