@@ -3,6 +3,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import { articleData } from '../data/articleData';
+import { mbtiResults } from '../data/testQuestions';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 type ArticleCardProps = {
