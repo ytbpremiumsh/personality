@@ -10,7 +10,7 @@ interface PDFContentProps {
 const PDFContent: React.FC<PDFContentProps> = ({ result }) => {
   return (
     <div className="hidden">
-      <div id="result-content-for-pdf">
+      <div id="result-content-for-pdf" style={{ position: 'absolute', left: '-9999px', width: '800px' }}>
         <Card className="mb-8 overflow-hidden">
           <div className="bg-mbti-deep-purple text-white p-6 text-center">
             <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">

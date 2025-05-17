@@ -13,12 +13,22 @@ export const generatePDF = async (elementId: string, fileName: string): Promise<
   }
   
   try {
+    // Set display to block temporarily to ensure the hidden element renders properly
+    const originalDisplay = resultElement.style.display;
+    resultElement.style.display = 'block';
+    
+    // Wait for layout to update
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
     const canvas = await html2canvas(resultElement, {
       scale: 2,
       useCORS: true,
       logging: false,
       backgroundColor: '#ffffff'
     });
+    
+    // Restore original display style
+    resultElement.style.display = originalDisplay;
     
     const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF({
@@ -60,12 +70,12 @@ export const generatePDF = async (elementId: string, fileName: string): Promise<
     pdf.setFont('helvetica', 'normal');
     pdf.text('© quiz.ruangedukasi.com', pdfWidth / 2, pdfHeight - 5, { align: 'center' });
     
-    // Add watermark at the top center
+    // Add watermark at the top center - more subtly
     pdf.setTextColor(150, 150, 150);
-    pdf.setFontSize(14);
+    pdf.setFontSize(12);
     pdf.setFont('helvetica', 'italic');
     pdf.setGState(pdf.GState({opacity: 0.3}));
-    pdf.text('quiz.ruangedukasi.com', pdfWidth / 2, 18, { 
+    pdf.text('quiz.ruangedukasi.com', pdfWidth / 2, pdfHeight - 20, { 
       align: 'center' 
     });
     

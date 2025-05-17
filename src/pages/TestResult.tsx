@@ -63,7 +63,7 @@ const TestResult: React.FC = () => {
             />
           </div>
           
-          {/* Hidden content just for PDF export - without buttons */}
+          {/* Hidden content just for PDF export */}
           <PDFContent result={result} />
         </div>
       </section>
