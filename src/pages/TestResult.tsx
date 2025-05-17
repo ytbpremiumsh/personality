@@ -1,14 +1,13 @@
 
 import React from 'react';
 import Layout from '../components/Layout';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { mbtiResults } from '../data/testQuestions';
-import { Button } from '@/components/ui/button';
-import { Download, Share2, BookOpen } from 'lucide-react';
 import { toast } from "sonner";
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-import { Card, CardContent } from '@/components/ui/card';
+import { generatePDF } from '@/utils/pdf-generator';
+import ResultCard from '@/components/test-results/ResultCard';
+import PDFContent from '@/components/test-results/PDFContent';
+import ActionButtons from '@/components/test-results/ActionButtons';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const TestResult: React.FC = () => {
@@ -41,72 +40,7 @@ const TestResult: React.FC = () => {
   
   // Function to handle downloading results as PDF
   const handleDownloadPDF = () => {
-    toast.info('Menyiapkan PDF, harap tunggu...');
-    
-    const resultElement = document.getElementById('result-content-for-pdf');
-    if (!resultElement) return;
-    
-    html2canvas(resultElement, {
-      scale: 2,
-      useCORS: true,
-      logging: false,
-      backgroundColor: '#ffffff'
-    }).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-      });
-      
-      // PDF dimensions
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      
-      // Calculate image dimensions to fit properly on PDF
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      
-      // Adjust the ratio to ensure the content fits on one page
-      // Use 0.8 (80%) of the height to leave space for header and footer
-      const ratio = Math.min(pdfWidth / imgWidth, (pdfHeight * 0.8) / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 20; // Start 20mm from top to leave space for header
-      
-      // Add header
-      pdf.setFillColor(155, 135, 245); // mbti-deep-purple
-      pdf.rect(0, 0, pdfWidth, 15, 'F');
-      pdf.setTextColor(255, 255, 255); // white
-      pdf.setFontSize(14);
-      pdf.setFont('helvetica', 'bold');
-      pdf.text('Hasil Tes Kepribadian MBTI', pdfWidth / 2, 10, { align: 'center' });
-      
-      // Add content image
-      pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
-      
-      // Add footer
-      pdf.setFillColor(155, 135, 245); // mbti-deep-purple
-      pdf.rect(0, pdfHeight - 15, pdfWidth, 15, 'F');
-      pdf.setTextColor(255, 255, 255); // white
-      pdf.setFontSize(10);
-      pdf.setFont('helvetica', 'normal');
-      pdf.text('© quiz.ruangedukasi.com', pdfWidth / 2, pdfHeight - 5, { align: 'center' });
-      
-      // Add watermark at the top center instead of diagonally
-      pdf.setGState(pdf.GState({opacity: 0.3}));
-      pdf.setTextColor(150, 150, 150);
-      pdf.setFontSize(14);
-      pdf.setFont('helvetica', 'italic');
-      pdf.text('quiz.ruangedukasi.com', pdfWidth / 2, 18, { 
-        align: 'center'
-      });
-      
-      pdf.save(`Hasil-MBTI-${result.type}.pdf`);
-      toast.success('PDF berhasil diunduh!');
-    }).catch(err => {
-      console.error('Error generating PDF:', err);
-      toast.error('Gagal mengunduh PDF');
-    });
+    generatePDF('result-content-for-pdf', `Hasil-MBTI-${result.type}.pdf`);
   };
   
   // Create a standardized article URL for consistent navigation
@@ -120,189 +54,17 @@ const TestResult: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main content - this will be shown on the page */}
           <div className="max-w-4xl mx-auto">
-            <Card className="mb-8 overflow-hidden">
-              <div className="bg-mbti-deep-purple text-white p-6 text-center">
-                <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
-                  Tipe Kepribadianmu
-                </span>
-                <h1 className="text-4xl sm:text-5xl font-bold mb-2">{result.type}</h1>
-                <h2 className="text-2xl sm:text-3xl">{result.title}</h2>
-              </div>
-              
-              <CardContent className="p-6">
-                <div className="mb-6">
-                  <div className="flex items-center mb-2">
-                    <div className="h-1 bg-mbti-deep-purple rounded flex-grow"></div>
-                    <h3 className="text-xl font-semibold mx-4">Deskripsi</h3>
-                    <div className="h-1 bg-mbti-deep-purple rounded flex-grow"></div>
-                  </div>
-                  <p className="text-gray-700 text-sm sm:text-base">{result.description}</p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <Card>
-                    <CardContent className="p-4">
-                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-mbti-deep-purple">Kekuatan</h3>
-                      <ul className="space-y-1 text-sm sm:text-base">
-                        {result.strengths.map((strength, index) => (
-                          <li key={index} className="flex items-start">
-                            <span className="text-mbti-deep-purple mr-2">•</span>
-                            <span>{strength}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card>
-                    <CardContent className="p-4">
-                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-mbti-deep-purple">Tantangan</h3>
-                      <ul className="space-y-1 text-sm sm:text-base">
-                        {result.challenges.map((challenge, index) => (
-                          <li key={index} className="flex items-start">
-                            <span className="text-mbti-deep-purple mr-2">•</span>
-                            <span>{challenge}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card>
-                    <CardContent className="p-4">
-                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-mbti-deep-purple">Karier yang Cocok</h3>
-                      <ul className="space-y-1 text-sm sm:text-base">
-                        {result.careers.map((career, index) => (
-                          <li key={index} className="flex items-start">
-                            <span className="text-mbti-deep-purple mr-2">•</span>
-                            <span>{career}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card>
-                    <CardContent className="p-4">
-                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-mbti-deep-purple">Kecocokan Tipe</h3>
-                      <div className="flex items-center justify-center h-full">
-                        <p className="text-gray-700 text-center text-sm sm:text-base">
-                          Tipe kepribadian yang paling cocok denganmu: <strong className="text-mbti-deep-purple text-lg">{result.compatibility}</strong>
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CardContent>
-            </Card>
+            <ResultCard result={result} />
             
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <Link 
-                to="/test" 
-                className="px-6 py-3 bg-gradient-to-r from-mbti-deep-purple to-mbti-purple rounded-lg text-white font-medium hover:opacity-90 transition-opacity"
-              >
-                Ulangi Tes
-              </Link>
-              <Button 
-                onClick={handleShareResults}
-                variant="outline"
-                className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
-                size="lg"
-              >
-                <Share2 className="w-4 h-4 mr-2" />
-                Bagikan Hasil
-              </Button>
-              <Button 
-                onClick={handleDownloadPDF}
-                variant="outline"
-                className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
-                size="lg"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Unduh Hasil (PDF)
-              </Button>
-              <Link 
-                to={getArticleUrl()} 
-                className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
-              >
-                <BookOpen className="w-4 h-4 mr-2" />
-                Baca Lanjutan
-              </Link>
-            </div>
+            <ActionButtons 
+              onShareResults={handleShareResults}
+              onDownloadPDF={handleDownloadPDF}
+              articleUrl={getArticleUrl()}
+            />
           </div>
           
           {/* Hidden content just for PDF export - without buttons */}
-          <div id="result-content-for-pdf" className="hidden">
-            <Card className="mb-8 overflow-hidden">
-              <div className="bg-mbti-deep-purple text-white p-6 text-center">
-                <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
-                  Tipe Kepribadianmu
-                </span>
-                <h1 className="text-4xl sm:text-5xl font-bold mb-2">{result.type}</h1>
-                <h2 className="text-2xl sm:text-3xl">{result.title}</h2>
-              </div>
-              
-              <CardContent className="p-6">
-                <div className="mb-4">
-                  <div className="flex items-center mb-2">
-                    <div className="h-1 bg-mbti-deep-purple rounded flex-grow"></div>
-                    <h3 className="text-lg font-semibold mx-4">Deskripsi</h3>
-                    <div className="h-1 bg-mbti-deep-purple rounded flex-grow"></div>
-                  </div>
-                  <p className="text-gray-700 text-sm">{result.description}</p>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <h3 className="text-base font-semibold mb-1 text-mbti-deep-purple">Kekuatan</h3>
-                    <ul className="space-y-0.5 text-xs">
-                      {result.strengths.map((strength, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-mbti-deep-purple mr-1">•</span>
-                          <span>{strength}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-base font-semibold mb-1 text-mbti-deep-purple">Tantangan</h3>
-                    <ul className="space-y-0.5 text-xs">
-                      {result.challenges.map((challenge, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-mbti-deep-purple mr-1">•</span>
-                          <span>{challenge}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                
-                  <div>
-                    <h3 className="text-base font-semibold mb-1 text-mbti-deep-purple">Karier yang Cocok</h3>
-                    <ul className="space-y-0.5 text-xs">
-                      {result.careers.map((career, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-mbti-deep-purple mr-1">•</span>
-                          <span>{career}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-base font-semibold mb-1 text-mbti-deep-purple">Kecocokan Tipe</h3>
-                    <div className="flex items-center justify-center h-full">
-                      <p className="text-gray-700 text-center text-xs">
-                        Tipe kepribadian yang paling cocok denganmu: <strong className="text-mbti-deep-purple">{result.compatibility}</strong>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <PDFContent result={result} />
         </div>
       </section>
     </Layout>
