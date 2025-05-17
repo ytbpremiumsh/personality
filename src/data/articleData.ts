@@ -25,7 +25,7 @@ export const articleData: Article[] = [
     title: "INTJ: Si Arsitek Strategis",
     excerpt: "INTJ adalah salah satu dari 16 tipe kepribadian MBTI. Dikenal sebagai 'Si Arsitek' atau 'Si Pemikir Strategis', INTJ dikenal dengan kemampuan analitis yang tajam dan pemikiran yang visioner.",
     image: "/placeholder.svg",
-    slug: "intj-si-arsitek-strategis",
+    slug: "mbti-intj",
     type: "INTJ",
     publishDate: "10 Mei 2025",
     content: [
@@ -96,7 +96,7 @@ export const articleData: Article[] = [
     title: "INTP: Si Logis Yang Penuh Ide",
     excerpt: "INTP sering disebut sebagai 'Si Pemikir' atau 'Si Logis'. Mereka adalah pemikir abstrak yang briliant dengan kemampuan logika yang kuat dan ketertarikan pada ide teoritis.",
     image: "/placeholder.svg",
-    slug: "intp-si-logis-penuh-ide",
+    slug: "mbti-intp",
     type: "INTP",
     publishDate: "11 Mei 2025",
     content: [
@@ -154,7 +154,7 @@ export const articleData: Article[] = [
     title: "ENTJ: Si Komandan Yang Visioner",
     excerpt: "ENTJ dikenal sebagai 'Si Komandan' atau 'Si Eksekutif'. Mereka adalah pemimpin alami dengan visi yang jelas dan kemampuan untuk mengorganisir orang dan sumber daya untuk mencapai tujuan.",
     image: "/placeholder.svg",
-    slug: "entj-si-komandan-visioner",
+    slug: "mbti-entj",
     type: "ENTJ",
     publishDate: "12 Mei 2025",
     content: [
@@ -198,7 +198,7 @@ export const articleData: Article[] = [
     title: "ENTP: Si Penemu Yang Inovatif",
     excerpt: "ENTP sering disebut sebagai 'Si Penemu' atau 'Si Visioner'. Mereka adalah pemikir kreatif dan inovatif yang selalu mencari ide-ide baru dan solusi non-konvensional.",
     image: "/placeholder.svg",
-    slug: "entp-si-penemu-inovatif",
+    slug: "mbti-entp",
     type: "ENTP",
     publishDate: "13 Mei 2025",
     content: [
@@ -244,7 +244,7 @@ export const articleData: Article[] = [
     title: "INFJ: Si Pembimbing yang Bijaksana",
     excerpt: "INFJ dikenal sebagai 'Si Pembimbing' atau 'Si Idealis'. Mereka adalah pribadi yang kompleks, empatik, dan visioner dengan pemahaman mendalam tentang motivasi manusia.",
     image: "/placeholder.svg",
-    slug: "infj-si-pembimbing-bijaksana",
+    slug: "mbti-infj",
     type: "INFJ",
     publishDate: "14 Mei 2025",
     content: [
@@ -288,7 +288,7 @@ export const articleData: Article[] = [
     title: "INFP: Si Mediator yang Idealis",
     excerpt: "INFP dikenal sebagai 'Si Mediator' atau 'Si Pemimpi'. Mereka adalah pribadi yang penuh kasih, kreatif, dan idealis dengan keinginan kuat untuk membuat dunia menjadi tempat yang lebih baik.",
     image: "/placeholder.svg",
-    slug: "infp-si-mediator-idealis",
+    slug: "mbti-infp",
     type: "INFP",
     publishDate: "15 Mei 2025",
     content: [
@@ -332,7 +332,7 @@ export const articleData: Article[] = [
     title: "ENFJ: Si Protagonis yang Inspiratif",
     excerpt: "ENFJ dikenal sebagai 'Si Protagonis' atau 'Si Pemberi'. Mereka adalah pemimpin karismatik dan inspiratif yang secara alami memahami dan mempengaruhi orang lain.",
     image: "/placeholder.svg",
-    slug: "enfj-si-protagonis-inspiratif",
+    slug: "mbti-enfj",
     type: "ENFJ",
     publishDate: "16 Mei 2025",
     content: [
@@ -376,7 +376,7 @@ export const articleData: Article[] = [
     title: "ENFP: Si Petualang Yang Penuh Inspirasi",
     excerpt: "ENFP dikenal sebagai tipe kepribadian yang penuh energi, kreatif dan selalu mencari makna dalam setiap pengalaman. Mereka adalah pemimpin yang inspiratif dan inovatif.",
     image: "/placeholder.svg",
-    slug: "enfp-si-petualang-penuh-inspirasi",
+    slug: "mbti-enfp",
     type: "ENFP",
     publishDate: "17 Mei 2025",
     content: [
@@ -450,7 +450,7 @@ export const articleData: Article[] = [
     title: "ISTJ: Si Logistik yang Dapat Diandalkan",
     excerpt: "ISTJ dikenal sebagai 'Si Logistik' atau 'Si Inspektur'. Mereka adalah pribadi yang praktis, faktual, dan sangat bertanggung jawab dengan perhatian terhadap detail.",
     image: "/placeholder.svg",
-    slug: "istj-si-logistik-dapat-diandalkan",
+    slug: "mbti-istj",
     type: "ISTJ",
     publishDate: "18 Mei 2025",
     content: [
@@ -494,7 +494,7 @@ export const articleData: Article[] = [
     title: "ISFJ: Si Pelindung Yang Setia",
     excerpt: "ISFJ dikenal sebagai 'Si Pelindung' dan merupakan salah satu tipe kepribadian yang paling perhatian dan setia. Mereka selalu siap membantu orang lain dengan ketulusan.",
     image: "/placeholder.svg",
-    slug: "isfj-pelindung-yang-setia",
+    slug: "mbti-isfj",
     type: "ISFJ",
     publishDate: "19 Mei 2025",
     content: [
@@ -538,7 +538,7 @@ export const articleData: Article[] = [
     title: "ESTJ: Si Eksekutif yang Efisien",
     excerpt: "ESTJ dikenal sebagai 'Si Eksekutif' atau 'Si Administrator'. Mereka adalah pemimpin praktis, berorientasi pada hasil dengan kemampuan organisasi yang kuat.",
     image: "/placeholder.svg",
-    slug: "estj-si-eksekutif-efisien",
+    slug: "mbti-estj",
     type: "ESTJ",
     publishDate: "20 Mei 2025",
     content: [
@@ -582,7 +582,7 @@ export const articleData: Article[] = [
     title: "ESFJ: Si Konsul yang Peduli",
     excerpt: "ESFJ dikenal sebagai 'Si Konsul' atau 'Si Pemberi Perawatan'. Mereka adalah individu yang ramah, kooperatif, dan sangat peduli tentang kebutuhan orang lain.",
     image: "/placeholder.svg",
-    slug: "esfj-si-konsul-peduli",
+    slug: "mbti-esfj",
     type: "ESFJ",
     publishDate: "21 Mei 2025",
     content: [
@@ -628,7 +628,7 @@ export const articleData: Article[] = [
     title: "ISTP: Si Pengrajin Virtuoso",
     excerpt: "ISTP dikenal sebagai 'Si Pengrajin' atau 'Si Ahli'. Mereka adalah problem solver praktis dengan keterampilan teknis yang luar biasa dan kemampuan untuk beradaptasi dengan cepat.",
     image: "/placeholder.svg",
-    slug: "istp-si-pengrajin-virtuoso",
+    slug: "mbti-istp",
     type: "ISTP",
     publishDate: "22 Mei 2025",
     content: [
@@ -672,7 +672,7 @@ export const articleData: Article[] = [
     title: "ISFP: Si Artis yang Penuh Perasaan",
     excerpt: "ISFP dikenal sebagai 'Si Artis' atau 'Si Petualang'. Mereka adalah pribadi yang sensitif, kreatif, dan hidup di masa sekarang dengan apresiasi mendalam terhadap keindahan.",
     image: "/placeholder.svg",
-    slug: "isfp-si-artis-penuh-perasaan",
+    slug: "mbti-isfp",
     type: "ISFP",
     publishDate: "23 Mei 2025",
     content: [
@@ -716,7 +716,7 @@ export const articleData: Article[] = [
     title: "ESTP: Sang Penggerak Yang Pragmatis",
     excerpt: "ESTP adalah tipe kepribadian yang energik, pragmatis, dan selalu siap untuk aksi. Mereka hidup di masa kini dan memiliki kemampuan adaptasi yang luar biasa.",
     image: "/placeholder.svg",
-    slug: "estp-sang-penggerak-pragmatis",
+    slug: "mbti-estp",
     type: "ESTP",
     publishDate: "23 Mei 2025",
     content: [
@@ -760,7 +760,7 @@ export const articleData: Article[] = [
     title: "ESFP: Si Penghibur yang Penuh Semangat",
     excerpt: "ESFP dikenal sebagai 'Si Penghibur' atau 'Si Performer'. Mereka adalah pribadi yang spontan, energik, dan penuh kegembiraan yang mencintai pusat perhatian.",
     image: "/placeholder.svg",
-    slug: "esfp-si-penghibur-penuh-semangat",
+    slug: "mbti-esfp",
     type: "ESFP",
     publishDate: "25 Mei 2025",
     content: [
