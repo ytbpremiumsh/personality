@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from '../components/Layout';
 import { useParams, Link } from 'react-router-dom';
@@ -92,24 +91,19 @@ const TestResult: React.FC = () => {
       pdf.setFont('helvetica', 'normal');
       pdf.text('© quiz.ruangedukasi.com', pdfWidth / 2, pdfHeight - 5, { align: 'center' });
       
-      // Add watermark
-      pdf.setTextColor(200, 200, 200); // light gray
-      pdf.setFontSize(24);
-      pdf.setFont('helvetica', 'italic');
-      pdf.save(`Hasil-MBTI-${result.type}.pdf`);
-      
-      // Add diagonal watermark
+      // Add watermark - Fix for TypeScript errors by using text rotation differently
       pdf.setGState(pdf.GState({opacity: 0.3}));
       pdf.setTextColor(150, 150, 150);
       pdf.setFontSize(30);
       pdf.setFont('helvetica', 'italic');
       
-      // Save the transformation matrix and rotate for diagonal watermark
-      pdf.saveGraphicsState();
-      pdf.translate(pdfWidth / 2, pdfHeight / 2);
-      pdf.rotate(-45);
-      pdf.text('quiz.ruangedukasi.com', 0, 0, { align: 'center' });
-      pdf.restoreGraphicsState();
+      // Instead of using translate and rotate, use the text rotation option
+      const xCenter = pdfWidth / 2;
+      const yCenter = pdfHeight / 2;
+      pdf.text('quiz.ruangedukasi.com', xCenter, yCenter, { 
+        align: 'center',
+        angle: -45 
+      });
       
       pdf.save(`Hasil-MBTI-${result.type}.pdf`);
       toast.success('PDF berhasil diunduh!');
