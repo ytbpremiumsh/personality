@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Layout from '../components/Layout';
 import { useParams, Link } from 'react-router-dom';
@@ -42,7 +43,7 @@ const TestResult: React.FC = () => {
   const handleDownloadPDF = () => {
     toast.info('Menyiapkan PDF, harap tunggu...');
     
-    const resultElement = document.getElementById('result-content');
+    const resultElement = document.getElementById('result-content-for-pdf');
     if (!resultElement) return;
     
     html2canvas(resultElement, {
@@ -91,18 +92,13 @@ const TestResult: React.FC = () => {
       pdf.setFont('helvetica', 'normal');
       pdf.text('© quiz.ruangedukasi.com', pdfWidth / 2, pdfHeight - 5, { align: 'center' });
       
-      // Add watermark - Fix for TypeScript errors by using text rotation differently
+      // Add watermark at the top center instead of diagonally
       pdf.setGState(pdf.GState({opacity: 0.3}));
       pdf.setTextColor(150, 150, 150);
-      pdf.setFontSize(30);
+      pdf.setFontSize(14);
       pdf.setFont('helvetica', 'italic');
-      
-      // Instead of using translate and rotate, use the text rotation option
-      const xCenter = pdfWidth / 2;
-      const yCenter = pdfHeight / 2;
-      pdf.text('quiz.ruangedukasi.com', xCenter, yCenter, { 
-        align: 'center',
-        angle: -45 
+      pdf.text('quiz.ruangedukasi.com', pdfWidth / 2, 18, { 
+        align: 'center'
       });
       
       pdf.save(`Hasil-MBTI-${result.type}.pdf`);
@@ -113,16 +109,17 @@ const TestResult: React.FC = () => {
     });
   };
   
-  // Function to create a URL for the article about this MBTI type
+  // Create a standardized article URL for consistent navigation
   const getArticleUrl = () => {
-    return `/artikel/${result.type.toLowerCase()}`;
+    return `/artikel/mbti-${result.type.toLowerCase()}`;
   };
   
   return (
     <Layout>
       <section className="py-16 bg-gradient-to-br from-white via-mbti-blue to-mbti-purple bg-opacity-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto" id="result-content">
+          {/* Main content - this will be shown on the page */}
+          <div className="max-w-4xl mx-auto">
             <Card className="mb-8 overflow-hidden">
               <div className="bg-mbti-deep-purple text-white p-6 text-center">
                 <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
@@ -210,26 +207,101 @@ const TestResult: React.FC = () => {
               </Link>
               <Button 
                 onClick={handleShareResults}
-                className="px-6 py-3 bg-white border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
+                variant="outline"
+                className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
+                size="lg"
               >
                 <Share2 className="w-4 h-4 mr-2" />
                 Bagikan Hasil
               </Button>
               <Button 
                 onClick={handleDownloadPDF}
-                className="px-6 py-3 bg-white border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
+                variant="outline"
+                className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
+                size="lg"
               >
                 <Download className="w-4 h-4 mr-2" />
                 Unduh Hasil (PDF)
               </Button>
               <Link 
                 to={getArticleUrl()} 
-                className="px-6 py-3 bg-white border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
+                className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
               >
                 <BookOpen className="w-4 h-4 mr-2" />
                 Baca Lanjutan
               </Link>
             </div>
+          </div>
+          
+          {/* Hidden content just for PDF export - without buttons */}
+          <div id="result-content-for-pdf" className="hidden">
+            <Card className="mb-8 overflow-hidden">
+              <div className="bg-mbti-deep-purple text-white p-6 text-center">
+                <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
+                  Tipe Kepribadianmu
+                </span>
+                <h1 className="text-4xl sm:text-5xl font-bold mb-2">{result.type}</h1>
+                <h2 className="text-2xl sm:text-3xl">{result.title}</h2>
+              </div>
+              
+              <CardContent className="p-6">
+                <div className="mb-4">
+                  <div className="flex items-center mb-2">
+                    <div className="h-1 bg-mbti-deep-purple rounded flex-grow"></div>
+                    <h3 className="text-lg font-semibold mx-4">Deskripsi</h3>
+                    <div className="h-1 bg-mbti-deep-purple rounded flex-grow"></div>
+                  </div>
+                  <p className="text-gray-700 text-sm">{result.description}</p>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <h3 className="text-base font-semibold mb-1 text-mbti-deep-purple">Kekuatan</h3>
+                    <ul className="space-y-0.5 text-xs">
+                      {result.strengths.map((strength, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-mbti-deep-purple mr-1">•</span>
+                          <span>{strength}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-base font-semibold mb-1 text-mbti-deep-purple">Tantangan</h3>
+                    <ul className="space-y-0.5 text-xs">
+                      {result.challenges.map((challenge, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-mbti-deep-purple mr-1">•</span>
+                          <span>{challenge}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                
+                  <div>
+                    <h3 className="text-base font-semibold mb-1 text-mbti-deep-purple">Karier yang Cocok</h3>
+                    <ul className="space-y-0.5 text-xs">
+                      {result.careers.map((career, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-mbti-deep-purple mr-1">•</span>
+                          <span>{career}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-base font-semibold mb-1 text-mbti-deep-purple">Kecocokan Tipe</h3>
+                    <div className="flex items-center justify-center h-full">
+                      <p className="text-gray-700 text-center text-xs">
+                        Tipe kepribadian yang paling cocok denganmu: <strong className="text-mbti-deep-purple">{result.compatibility}</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
