@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://instagram.com/ruangedukasi"
+                href="https://instagram.com/ruangeduka"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-mbti-deep-purple transition-colors"
