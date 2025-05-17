@@ -718,7 +718,7 @@ export const articleData: Article[] = [
     image: "/placeholder.svg",
     slug: "estp-sang-penggerak-pragmatis",
     type: "ESTP",
-    publishDate: "24 Mei 2025",
+    publishDate: "23 Mei 2025",
     content: [
       "ESTP adalah salah satu dari 16 tipe kepribadian dalam sistem Myers-Briggs Type Indicator (MBTI). Mereka sering dijuluki 'Si Penggerak' atau 'Si Wirausahawan' karena keberanian dan kecenderungan mereka untuk mengambil risiko.",
       "Orang dengan tipe kepribadian ESTP adalah individu yang energik, cerdas, dan sangat berorientasi pada aksi. Mereka adalah pemecah masalah praktis yang hidup di saat ini dan menikmati sensasi dan petualangan."
