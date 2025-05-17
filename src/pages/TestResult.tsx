@@ -8,6 +8,7 @@ import { Download, Share2 } from 'lucide-react';
 import { toast } from "sonner";
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { Card, CardContent } from '@/components/ui/card';
 
 const TestResult: React.FC = () => {
   const { type } = useParams<{ type: string }>();
@@ -47,6 +48,7 @@ const TestResult: React.FC = () => {
       scale: 2,
       useCORS: true,
       logging: false,
+      backgroundColor: '#ffffff'
     }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
@@ -55,18 +57,35 @@ const TestResult: React.FC = () => {
         format: 'a4',
       });
       
-      // Add some metadata
+      // PDF dimensions
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
+      
+      // Calculate image dimensions to fit properly on PDF
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight * 0.9); // 90% of height to leave space for footer
       const imgX = (pdfWidth - imgWidth * ratio) / 2;
+      const imgY = 10; // Start 10mm from top
       
-      pdf.addImage(imgData, 'PNG', imgX, 10, imgWidth * ratio, imgHeight * ratio);
+      // Add header
+      pdf.setFillColor(155, 135, 245); // mbti-deep-purple
+      pdf.rect(0, 0, pdfWidth, 15, 'F');
+      pdf.setTextColor(255, 255, 255); // white
+      pdf.setFontSize(14);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('Hasil Tes Kepribadian MBTI', pdfWidth / 2, 10, { align: 'center' });
+      
+      // Add content image
+      pdf.addImage(imgData, 'PNG', imgX, imgY + 10, imgWidth * ratio, imgHeight * ratio);
+      
+      // Add footer
+      pdf.setFillColor(155, 135, 245); // mbti-deep-purple
+      pdf.rect(0, pdfHeight - 12, pdfWidth, 12, 'F');
+      pdf.setTextColor(255, 255, 255); // white
       pdf.setFontSize(10);
-      pdf.setTextColor(100, 100, 100);
-      pdf.text('© personality.ruangedukasi.com', pdfWidth / 2, pdfHeight - 10, { align: 'center' });
+      pdf.setFont('helvetica', 'normal');
+      pdf.text('© personality.ruangedukasi.com', pdfWidth / 2, pdfHeight - 5, { align: 'center' });
       
       pdf.save(`Hasil-MBTI-${result.type}.pdf`);
       toast.success('PDF berhasil diunduh!');
@@ -81,80 +100,101 @@ const TestResult: React.FC = () => {
       <section className="py-16 bg-gradient-to-br from-white via-mbti-blue to-mbti-purple bg-opacity-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto" id="result-content">
-            <div className="text-center mb-12">
-              <span className="inline-block px-4 py-2 rounded-full bg-mbti-deep-purple text-white font-semibold mb-4">
-                Tipe Kepribadianmu
-              </span>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-2">{result.type}</h1>
-              <h2 className="text-2xl sm:text-3xl text-gray-700">{result.title}</h2>
-            </div>
-            
-            <div className="mbti-card mb-8">
-              <h3 className="text-xl font-semibold mb-4">Deskripsi</h3>
-              <p className="text-gray-700">{result.description}</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="mbti-card">
-                <h3 className="text-xl font-semibold mb-4">Kekuatan</h3>
-                <ul className="space-y-2">
-                  {result.strengths.map((strength, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-mbti-deep-purple mr-2">•</span>
-                      <span>{strength}</span>
-                    </li>
-                  ))}
-                </ul>
+            <Card className="mb-8 overflow-hidden">
+              <div className="bg-mbti-deep-purple text-white p-6 text-center">
+                <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
+                  Tipe Kepribadianmu
+                </span>
+                <h1 className="text-4xl sm:text-5xl font-bold mb-2">{result.type}</h1>
+                <h2 className="text-2xl sm:text-3xl">{result.title}</h2>
               </div>
               
-              <div className="mbti-card">
-                <h3 className="text-xl font-semibold mb-4">Tantangan</h3>
-                <ul className="space-y-2">
-                  {result.challenges.map((challenge, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-mbti-deep-purple mr-2">•</span>
-                      <span>{challenge}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+              <CardContent className="p-6">
+                <div className="mb-6">
+                  <div className="flex items-center mb-2">
+                    <div className="h-1 bg-mbti-deep-purple rounded flex-grow"></div>
+                    <h3 className="text-xl font-semibold mx-4">Deskripsi</h3>
+                    <div className="h-1 bg-mbti-deep-purple rounded flex-grow"></div>
+                  </div>
+                  <p className="text-gray-700">{result.description}</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <Card>
+                    <CardContent className="p-4">
+                      <h3 className="text-xl font-semibold mb-3 text-mbti-deep-purple">Kekuatan</h3>
+                      <ul className="space-y-2">
+                        {result.strengths.map((strength, index) => (
+                          <li key={index} className="flex items-start">
+                            <span className="text-mbti-deep-purple mr-2">•</span>
+                            <span>{strength}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card>
+                    <CardContent className="p-4">
+                      <h3 className="text-xl font-semibold mb-3 text-mbti-deep-purple">Tantangan</h3>
+                      <ul className="space-y-2">
+                        {result.challenges.map((challenge, index) => (
+                          <li key={index} className="flex items-start">
+                            <span className="text-mbti-deep-purple mr-2">•</span>
+                            <span>{challenge}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card>
+                    <CardContent className="p-4">
+                      <h3 className="text-xl font-semibold mb-3 text-mbti-deep-purple">Karier yang Cocok</h3>
+                      <ul className="space-y-2">
+                        {result.careers.map((career, index) => (
+                          <li key={index} className="flex items-start">
+                            <span className="text-mbti-deep-purple mr-2">•</span>
+                            <span>{career}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card>
+                    <CardContent className="p-4">
+                      <h3 className="text-xl font-semibold mb-3 text-mbti-deep-purple">Kecocokan Tipe</h3>
+                      <div className="flex items-center justify-center h-full">
+                        <p className="text-gray-700 text-center">
+                          Tipe kepribadian yang paling cocok denganmu: <strong className="text-mbti-deep-purple text-lg">{result.compatibility}</strong>
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CardContent>
+            </Card>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="mbti-card">
-                <h3 className="text-xl font-semibold mb-4">Karier yang Cocok</h3>
-                <ul className="space-y-2">
-                  {result.careers.map((career, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-mbti-deep-purple mr-2">•</span>
-                      <span>{career}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="mbti-card">
-                <h3 className="text-xl font-semibold mb-4">Kecocokan Tipe</h3>
-                <p className="text-gray-700">
-                  Tipe kepribadian yang paling cocok denganmu: <strong>{result.compatibility}</strong>
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-4 mt-12">
-              <Link to="/test" className="mbti-button">
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
+              <Link 
+                to="/test" 
+                className="px-6 py-3 bg-gradient-to-r from-mbti-deep-purple to-mbti-purple rounded-lg text-white font-medium hover:opacity-90 transition-opacity"
+              >
                 Ulangi Tes
               </Link>
               <Button 
                 onClick={handleShareResults}
-                className="mbti-button-secondary flex items-center"
+                className="px-6 py-3 bg-white border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
               >
                 <Share2 className="w-4 h-4 mr-2" />
                 Bagikan Hasil
               </Button>
               <Button 
                 onClick={handleDownloadPDF}
-                className="mbti-button-secondary flex items-center"
+                className="px-6 py-3 bg-white border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
               >
                 <Download className="w-4 h-4 mr-2" />
                 Unduh Hasil (PDF)
