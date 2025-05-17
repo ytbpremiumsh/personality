@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { MBTIResult } from '@/data/testQuestions';
+import { MbtiResult } from '@/data/testQuestions';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface ResultCardProps {
-  result: MBTIResult;
+  result: MbtiResult;
 }
 
 const ResultCard: React.FC<ResultCardProps> = ({ result }) => {

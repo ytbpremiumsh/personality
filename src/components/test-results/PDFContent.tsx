@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { MBTIResult } from '@/data/testQuestions';
+import { MbtiResult } from '@/data/testQuestions';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface PDFContentProps {
-  result: MBTIResult;
+  result: MbtiResult;
 }
 
 const PDFContent: React.FC<PDFContentProps> = ({ result }) => {
