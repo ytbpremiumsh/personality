@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
           </div>
           <div className="md:w-1/2">
             <img 
-              src="/placeholder.svg" 
+              src="https://storage.googleapis.com/a1aa/image/f8274d10-452c-4a18-9a86-89edc75f002d.jpg" 
               alt="MBTI Test Illustration" 
               className="w-full h-auto rounded-lg shadow-xl"
             />
