@@ -93,7 +93,7 @@ export const articleData: Article[] = [
   },
   {
     id: 2,
-    title: "INTP: Si Logis Yang Penuh Ide",
+    title: "INTP: Si Pemikir Yang Penuh Ide",
     excerpt: "INTP sering disebut sebagai 'Si Pemikir' atau 'Si Logis'. Mereka adalah pemikir abstrak yang briliant dengan kemampuan logika yang kuat dan ketertarikan pada ide teoritis.",
     image: "/placeholder.svg",
     slug: "mbti-intp",
@@ -151,8 +151,8 @@ export const articleData: Article[] = [
   },
   {
     id: 3,
-    title: "ENTJ: Si Komandan Yang Visioner",
-    excerpt: "ENTJ dikenal sebagai 'Si Komandan' atau 'Si Eksekutif'. Mereka adalah pemimpin alami dengan visi yang jelas dan kemampuan untuk mengorganisir orang dan sumber daya untuk mencapai tujuan.",
+    title: "ENTJ: Si Pendebat Yang Berbakat",
+    excerpt: "ENTJ dikenal sebagai 'Si Pendebat' atau 'Si Eksekutif'. Mereka adalah pemimpin alami dengan visi yang jelas dan kemampuan untuk mengorganisir orang dan sumber daya untuk mencapai tujuan.",
     image: "/placeholder.svg",
     slug: "mbti-entj",
     type: "ENTJ",
@@ -241,8 +241,8 @@ export const articleData: Article[] = [
   // The Diplomats
   {
     id: 5,
-    title: "INFJ: Si Pembimbing yang Bijaksana",
-    excerpt: "INFJ dikenal sebagai 'Si Pembimbing' atau 'Si Idealis'. Mereka adalah pribadi yang kompleks, empatik, dan visioner dengan pemahaman mendalam tentang motivasi manusia.",
+    title: "INFJ: Si Pembela yang Bijaksana",
+    excerpt: "INFJ dikenal sebagai 'Si Pembela' atau 'Si Idealis'. Mereka adalah pribadi yang kompleks, empatik, dan visioner dengan pemahaman mendalam tentang motivasi manusia.",
     image: "/placeholder.svg",
     slug: "mbti-infj",
     type: "INFJ",
@@ -373,7 +373,7 @@ export const articleData: Article[] = [
   },
   {
     id: 8,
-    title: "ENFP: Si Petualang Yang Penuh Inspirasi",
+    title: "ENFP: Si Juru Kampanye Yang Penuh Inspirasi",
     excerpt: "ENFP dikenal sebagai tipe kepribadian yang penuh energi, kreatif dan selalu mencari makna dalam setiap pengalaman. Mereka adalah pemimpin yang inspiratif dan inovatif.",
     image: "/placeholder.svg",
     slug: "mbti-enfp",
@@ -669,7 +669,7 @@ export const articleData: Article[] = [
   },
   {
     id: 14,
-    title: "ISFP: Si Artis yang Penuh Perasaan",
+    title: "ISFP: Si Petualang yang Penuh Perasaan",
     excerpt: "ISFP dikenal sebagai 'Si Artis' atau 'Si Petualang'. Mereka adalah pribadi yang sensitif, kreatif, dan hidup di masa sekarang dengan apresiasi mendalam terhadap keindahan.",
     image: "/placeholder.svg",
     slug: "mbti-isfp",
@@ -713,14 +713,14 @@ export const articleData: Article[] = [
   },
   {
     id: 15,
-    title: "ESTP: Sang Penggerak Yang Pragmatis",
+    title: "ESTP: Si Pengusaha Yang Pragmatis",
     excerpt: "ESTP adalah tipe kepribadian yang energik, pragmatis, dan selalu siap untuk aksi. Mereka hidup di masa kini dan memiliki kemampuan adaptasi yang luar biasa.",
     image: "/placeholder.svg",
     slug: "mbti-estp",
     type: "ESTP",
     publishDate: "23 Mei 2025",
     content: [
-      "ESTP adalah salah satu dari 16 tipe kepribadian dalam sistem Myers-Briggs Type Indicator (MBTI). Mereka sering dijuluki 'Si Penggerak' atau 'Si Wirausahawan' karena keberanian dan kecenderungan mereka untuk mengambil risiko.",
+      "ESTP adalah salah satu dari 16 tipe kepribadian dalam sistem Myers-Briggs Type Indicator (MBTI). Mereka sering dijuluki 'Si Penggerak' atau 'Si Pengusaha' karena keberanian dan kecenderungan mereka untuk mengambil risiko.",
       "Orang dengan tipe kepribadian ESTP adalah individu yang energik, cerdas, dan sangat berorientasi pada aksi. Mereka adalah pemecah masalah praktis yang hidup di saat ini dan menikmati sensasi dan petualangan."
     ],
     sections: [
