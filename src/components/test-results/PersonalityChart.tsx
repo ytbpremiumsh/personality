@@ -77,7 +77,7 @@ const PersonalityChart: React.FC<PersonalityChartProps> = ({
               </div>
               <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-mbti-deep-purple to-mbti-purple" 
+                  className="h-full bg-mbti-deep-purple" 
                   style={{
                     width: `${pair.percentage1}%`
                   }}

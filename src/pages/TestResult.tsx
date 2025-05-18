@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import { useParams } from 'react-router-dom';
 import { mbtiResults } from '../data/testQuestions';
 import { toast } from "sonner";
-import { generateImage } from '@/utils/image-generator';
+import { generateImage, generatePDF } from '@/utils/image-generator';
 import ResultCard from '@/components/test-results/ResultCard';
 import PDFContent from '@/components/test-results/PDFContent';
 import ActionButtons from '@/components/test-results/ActionButtons';
@@ -43,6 +43,11 @@ const TestResult: React.FC = () => {
     generateImage('result-content-for-image', `Hasil-MBTI-${result.type}.jpg`, 'jpg');
   };
   
+  // Function to handle downloading results as PDF
+  const handleDownloadPDF = () => {
+    generatePDF('result-content-for-pdf', `Hasil-MBTI-${result.type}.pdf`);
+  };
+  
   // Create a standardized article URL for consistent navigation
   const getArticleUrl = () => {
     return `/artikel/mbti-${result.type.toLowerCase()}`;
@@ -59,6 +64,7 @@ const TestResult: React.FC = () => {
             <ActionButtons 
               onShareResults={handleShareResults}
               onDownloadImage={handleDownloadImage}
+              onDownloadPDF={handleDownloadPDF}
               articleUrl={getArticleUrl()}
             />
           </div>
