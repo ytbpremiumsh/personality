@@ -34,24 +34,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         <Share2 className="w-4 h-4 mr-2" />
         Bagikan Hasil
       </Button>
-      <Button 
-        onClick={onDownloadPDF}
-        variant="outline"
-        className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
-        size="lg"
-      >
-        <Download className="w-4 h-4 mr-2" />
-        Unduh Hasil (PDF)
-      </Button>
-      <Button 
-        onClick={onDownloadImage}
-        variant="outline"
-        className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
-        size="lg"
-      >
-        <Image className="w-4 h-4 mr-2" />
-        Unduh Gambar
-      </Button>
+     
       <Link 
         to={articleUrl} 
         className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
