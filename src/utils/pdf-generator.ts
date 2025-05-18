@@ -47,9 +47,9 @@ export const generatePDF = async (elementId: string, fileName: string): Promise<
     
     // Adjust the ratio to ensure the content fits on one page
     // Use 0.8 (80%) of the height to leave space for header and footer
-    const ratio = Math.min(pdfWidth / imgWidth, (pdfHeight * 0.8) / imgHeight);
+    const ratio = Math.min(pdfWidth / imgWidth, (pdfHeight * 0.85) / imgHeight);
     const imgX = (pdfWidth - imgWidth * ratio) / 2;
-    const imgY = 20; // Start 20mm from top to leave space for header
+    const imgY = 15; // Start 15mm from top to leave space for header
     
     // Add header
     pdf.setFillColor(155, 135, 245); // mbti-deep-purple
@@ -62,22 +62,13 @@ export const generatePDF = async (elementId: string, fileName: string): Promise<
     // Add content image
     pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
     
-    // Add footer
+    // Add footer with promotional text
     pdf.setFillColor(155, 135, 245); // mbti-deep-purple
     pdf.rect(0, pdfHeight - 15, pdfWidth, 15, 'F');
     pdf.setTextColor(255, 255, 255); // white
     pdf.setFontSize(10);
     pdf.setFont('helvetica', 'normal');
-    pdf.text('© quiz.ruangedukasi.com', pdfWidth / 2, pdfHeight - 5, { align: 'center' });
-    
-    // Add watermark at the top center - more subtly
-    pdf.setTextColor(150, 150, 150);
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'italic');
-    pdf.setGState(pdf.GState({opacity: 0.3}));
-    pdf.text('quiz.ruangedukasi.com', pdfWidth / 2, pdfHeight - 20, { 
-      align: 'center' 
-    });
+    pdf.text('Mau ikutan yuk cek di quiz.ruangedukasi.com', pdfWidth / 2, pdfHeight - 5, { align: 'center' });
     
     pdf.save(fileName);
     toast.success('PDF berhasil diunduh!');

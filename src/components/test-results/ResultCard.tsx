@@ -2,6 +2,7 @@
 import React from 'react';
 import { MbtiResult } from '@/data/testQuestions';
 import { Card, CardContent } from '@/components/ui/card';
+import PersonalityChart from './PersonalityChart';
 
 interface ResultCardProps {
   result: MbtiResult;
@@ -27,6 +28,9 @@ const ResultCard: React.FC<ResultCardProps> = ({ result }) => {
           </div>
           <p className="text-gray-700 text-sm sm:text-base">{result.description}</p>
         </div>
+        
+        {/* Add Personality Chart here */}
+        <PersonalityChart type={result.type} />
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <Card>

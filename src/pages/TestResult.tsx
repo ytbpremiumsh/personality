@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { mbtiResults } from '../data/testQuestions';
 import { toast } from "sonner";
 import { generatePDF } from '@/utils/pdf-generator';
+import { generateImage } from '@/utils/image-generator';
 import ResultCard from '@/components/test-results/ResultCard';
 import PDFContent from '@/components/test-results/PDFContent';
 import ActionButtons from '@/components/test-results/ActionButtons';
@@ -43,6 +44,11 @@ const TestResult: React.FC = () => {
     generatePDF('result-content-for-pdf', `Hasil-MBTI-${result.type}.pdf`);
   };
   
+  // Function to handle downloading results as image
+  const handleDownloadImage = () => {
+    generateImage('result-content-for-image', `Hasil-MBTI-${result.type}.png`, 'png');
+  };
+  
   // Create a standardized article URL for consistent navigation
   const getArticleUrl = () => {
     return `/artikel/mbti-${result.type.toLowerCase()}`;
@@ -59,11 +65,12 @@ const TestResult: React.FC = () => {
             <ActionButtons 
               onShareResults={handleShareResults}
               onDownloadPDF={handleDownloadPDF}
+              onDownloadImage={handleDownloadImage}
               articleUrl={getArticleUrl()}
             />
           </div>
           
-          {/* Hidden content just for PDF export */}
+          {/* Hidden content for PDF and image export */}
           <PDFContent result={result} />
         </div>
       </section>
