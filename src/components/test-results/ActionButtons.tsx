@@ -2,18 +2,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Download, Share2, BookOpen, Image } from 'lucide-react';
+import { Share2, BookOpen, Image } from 'lucide-react';
 
 interface ActionButtonsProps {
   onShareResults: () => void;
-  onDownloadPDF: () => void;
   onDownloadImage: () => void;
   articleUrl: string;
 }
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({ 
   onShareResults, 
-  onDownloadPDF, 
   onDownloadImage,
   articleUrl 
 }) => {
@@ -34,7 +32,15 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         <Share2 className="w-4 h-4 mr-2" />
         Bagikan Hasil
       </Button>
-     
+      <Button 
+        onClick={onDownloadImage}
+        variant="outline"
+        className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"
+        size="lg"
+      >
+        <Image className="w-4 h-4 mr-2" />
+        Unduh Hasil
+      </Button>
       <Link 
         to={articleUrl} 
         className="px-6 py-3 border border-mbti-deep-purple text-mbti-deep-purple rounded-lg font-medium hover:bg-mbti-blue transition-colors flex items-center"

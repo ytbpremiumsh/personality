@@ -1,9 +1,6 @@
 
 import React from 'react';
-import { MbtiResult } from '@/data/testQuestions';
 import { Card, CardContent } from '@/components/ui/card';
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 interface PersonalityChartProps {
   type: string;

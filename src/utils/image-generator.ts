@@ -21,13 +21,15 @@ export const generateImage = async (
     element.style.display = 'block';
     
     // Wait for layout to update
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, 300));
     
     const canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
       logging: false,
-      backgroundColor: '#ffffff'
+      backgroundColor: '#ffffff',
+      windowHeight: element.scrollHeight,
+      windowWidth: element.scrollWidth
     });
     
     // Restore original display style
@@ -35,7 +37,7 @@ export const generateImage = async (
     
     // Convert to image
     const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png';
-    const imgData = canvas.toDataURL(mimeType, 0.9);
+    const imgData = canvas.toDataURL(mimeType, 0.95);
     
     // Create download link
     const link = document.createElement('a');
@@ -48,6 +50,6 @@ export const generateImage = async (
     toast.success('Gambar berhasil diunduh!');
   } catch (err) {
     console.error('Error generating image:', err);
-    toast.error('Gagal mengunduh gambar');
+    toast.error('Gagal mengunduh gambar, coba lagi dalam beberapa saat');
   }
 };
