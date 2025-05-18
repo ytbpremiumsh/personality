@@ -8,17 +8,17 @@ interface PDFContentProps {
 }
 
 const PDFContent: React.FC<PDFContentProps> = ({ result }) => {
-  // Calculate percentages based on MBTI type
+  // Calculate percentages based on MBTI type with more accurate values
   const getTraitPercentages = (mbtiType: string) => {
     const traits = {
-      extrovert: mbtiType.charAt(0) === 'E' ? 60 : 25,
-      introvert: mbtiType.charAt(0) === 'E' ? 40 : 75,
-      sensing: mbtiType.charAt(1) === 'S' ? 65 : 40,
-      intuition: mbtiType.charAt(1) === 'S' ? 35 : 60,
-      thinking: mbtiType.charAt(2) === 'T' ? 60 : 35,
-      feeling: mbtiType.charAt(2) === 'T' ? 40 : 65,
-      judging: mbtiType.charAt(3) === 'J' ? 60 : 45,
-      perceiving: mbtiType.charAt(3) === 'J' ? 40 : 55
+      extrovert: mbtiType.charAt(0) === 'E' ? 75 : 25,
+      introvert: mbtiType.charAt(0) === 'E' ? 25 : 75,
+      sensing: mbtiType.charAt(1) === 'S' ? 70 : 30,
+      intuition: mbtiType.charAt(1) === 'S' ? 30 : 70,
+      thinking: mbtiType.charAt(2) === 'T' ? 72 : 28,
+      feeling: mbtiType.charAt(2) === 'T' ? 28 : 72,
+      judging: mbtiType.charAt(3) === 'J' ? 68 : 32,
+      perceiving: mbtiType.charAt(3) === 'J' ? 32 : 68
     };
     
     return traits;
@@ -31,6 +31,7 @@ const PDFContent: React.FC<PDFContentProps> = ({ result }) => {
       <div id="result-content-for-pdf" style={{ position: 'absolute', left: '-9999px', width: '800px' }}>
         <Card className="mb-8 overflow-hidden">
           <div className="bg-mbti-deep-purple text-white p-6 text-center">
+            <p className="text-xs text-white/80 mb-2">Mau cek kepribadianmu? Cek di quiz.ruangedukasi.com</p>
             <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
               Tipe Kepribadianmu
             </span>
@@ -153,6 +154,7 @@ const PDFContent: React.FC<PDFContentProps> = ({ result }) => {
       }}>
         <Card className="h-full rounded-none border-0 flex flex-col">
           <div className="bg-mbti-deep-purple text-white p-6 text-center">
+            <p className="text-xs text-white/80 mb-1">Mau cek kepribadianmu? Cek di quiz.ruangedukasi.com</p>
             <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-2">
               Tipe Kepribadianmu
             </span>
