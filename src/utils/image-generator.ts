@@ -1,6 +1,7 @@
 
 import html2canvas from 'html2canvas';
 import { toast } from "sonner";
+import jsPDF from 'jspdf';
 
 export const generateImage = async (
   elementId: string, 
@@ -21,17 +22,13 @@ export const generateImage = async (
     element.style.display = 'block';
     
     // Wait for layout to update
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 500));
     
     const canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
       logging: false,
       backgroundColor: '#ffffff',
-      windowHeight: element.scrollHeight,
-      windowWidth: element.scrollWidth,
-      // Add these options to fix gradient issues
-      removeContainer: false,
       allowTaint: true,
       foreignObjectRendering: false
     });
@@ -58,9 +55,6 @@ export const generateImage = async (
   }
 };
 
-// Add new function for PDF generation
-import jsPDF from 'jspdf';
-
 export const generatePDF = async (
   elementId: string,
   fileName: string
@@ -78,8 +72,8 @@ export const generatePDF = async (
     const originalDisplay = element.style.display;
     element.style.display = 'block';
     
-    // Wait for layout to update
-    await new Promise(resolve => setTimeout(resolve, 300));
+    // Wait for layout to update - increase timeout to ensure rendering is complete
+    await new Promise(resolve => setTimeout(resolve, 500));
     
     const canvas = await html2canvas(element, {
       scale: 2,
@@ -93,7 +87,7 @@ export const generatePDF = async (
     // Restore original display style
     element.style.display = originalDisplay;
     
-    // A4 size in mm: 210 x 297
+    // Create PDF with A4 dimensions
     const pdf = new jsPDF({
       orientation: 'portrait',
       unit: 'mm',
@@ -102,12 +96,14 @@ export const generatePDF = async (
     
     const imgData = canvas.toDataURL('image/jpeg', 1.0);
     
-    // Calculate dimensions to fit A4
+    // Get dimensions
     const imgWidth = 210; // A4 width in mm
     const pageHeight = 297; // A4 height in mm
-    const imgHeight = canvas.height * imgWidth / canvas.width;
     
-    // Add image to PDF (centered if smaller than A4)
+    // Calculate height based on image ratio and A4 width
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    
+    // Add image to PDF (centered)
     pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
     
     // Save PDF

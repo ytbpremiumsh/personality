@@ -40,11 +40,13 @@ const TestResult: React.FC = () => {
   
   // Function to handle downloading results as image
   const handleDownloadImage = () => {
+    console.log("Generating image...");
     generateImage('result-content-for-image', `Hasil-MBTI-${result.type}.jpg`, 'jpg');
   };
   
   // Function to handle downloading results as PDF
   const handleDownloadPDF = () => {
+    console.log("Generating PDF...");
     generatePDF('result-content-for-pdf', `Hasil-MBTI-${result.type}.pdf`);
   };
   
