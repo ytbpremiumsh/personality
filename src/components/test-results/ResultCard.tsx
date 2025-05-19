@@ -46,15 +46,14 @@ const ResultCard: React.FC<ResultCardProps> = ({
       </Card>
 
       <Card className="mb-8 overflow-hidden">
-        <div className="bg-mbti-deep-purple text-white p-6 text-center px-[24px] py-[24px]">
+        <div className="bg-mbti-deep-purple text-white p-6 text-center px-[20px] py-[16px]">
           <p className="text-xs text-white/80 mb-2">Mau cek kepribadianmu? Cek di <strong>quiz.ruangedukasi.com</strong></p>
           <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
             Karakteristik {result.type}
           </span>
-          <p className="text-xs text-white/80 mb-2"><strong>{result.title}</strong></p>
         </div>
         
-        <CardContent className="p-6 px-[24px] py-[17px]">
+        <CardContent className="p-6 px-[20px] py-[10px]">
          {/* Karakteristik Section */}
           <div className="mb-6 max-w-4xl mx-auto">
             <div className="flex items-center mb-4 justify-center">
