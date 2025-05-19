@@ -116,7 +116,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
         <div className="bg-mbti-deep-purple text-white p-6 text-center px-[24px] py-[24px]">
           <p className="text-xs text-white/80 mb-2">Mau cek kepribadianmu? Cek di <strong>quiz.ruangedukasi.com</strong></p>
           <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
-            Tipe Kepribadianmu
+            Karakteristik
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold mb-2">{result.type}</h1>
           <h2 className="text-2xl sm:text-3xl">{result.title}</h2>
