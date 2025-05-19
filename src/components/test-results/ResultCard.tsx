@@ -15,7 +15,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
   return (
     <>
       <Card className="mb-8 overflow-hidden">
-        <div className="bg-mbti-deep-purple text-white p-6 text-center px-[24px] py-[24px]">
+        <div className="bg-mbti-deep-purple text-white p-6 text-center px-[24px] py-[18px]">
           <p className="text-xs text-white/80 mb-2">Mau cek kepribadianmu? Cek di <strong>quiz.ruangedukasi.com</strong></p>
           <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
             Tipe Kepribadianmu
@@ -24,7 +24,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
           <h2 className="text-2xl sm:text-3xl">{result.title}</h2>
         </div>
         
-        <CardContent className="p-6 px-[24px] py-[17px]">
+        <CardContent className="p-6 px-[24px] py-[10px]">
           <div className="mb-6 max-w-3xl mx-auto">
             <div className="flex items-center mb-4 justify-center">
               <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
@@ -118,8 +118,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
           <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
             Karakteristik
           </span>
-          <h1 className="text-4xl sm:text-5xl font-bold mb-2">{result.type}</h1>
-          <h2 className="text-2xl sm:text-3xl">{result.title}</h2>
+          <p className="text-xs text-white/80 mb-2">{result.type}<strong>{result.title}</strong></p>
         </div>
         
         <CardContent className="p-6 px-[24px] py-[17px]">
