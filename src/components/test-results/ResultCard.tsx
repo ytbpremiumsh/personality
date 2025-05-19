@@ -20,7 +20,8 @@ const ResultCard: React.FC<ResultCardProps> = ({
           <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
             Tipe Kepribadianmu
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-2">{result.type} - {result.title}</h2>         
+          <h3 className="text-4xl sm:text-5xl font-bold mb-2">{result.type}</h3>
+          <h3 className="text-2xl sm:text-3xl">{result.title}</h3>
         </div>
         
         <CardContent className="p-6 px-[18px] py-[4px]">
