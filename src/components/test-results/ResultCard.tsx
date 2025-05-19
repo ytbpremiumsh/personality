@@ -62,7 +62,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
               <Card className="border rounded-lg shadow-sm">
                 <CardContent className="p-6">
                   <h4 className="text-2xl font-semibold mb-4 text-mbti-deep-purple">Kekuatan</h4>
-                  <ul className="space-y-1">
+                  <ul className="space-y-0.5">
                     {result.strengths.map((strength, index) => (
                       <li key={index} className="flex items-start">
                         <span className="text-mbti-deep-purple mr-2">•</span>
@@ -77,7 +77,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
               <Card className="border rounded-lg shadow-sm">
                 <CardContent className="p-6">
                   <h4 className="text-2xl font-semibold mb-4 text-mbti-deep-purple">Tantangan</h4>
-                  <ul className="space-y-1">
+                  <ul className="space-y-0.5">
                     {result.challenges.map((challenge, index) => (
                       <li key={index} className="flex items-start">
                         <span className="text-mbti-deep-purple mr-2">•</span>
@@ -92,7 +92,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
               <Card className="border rounded-lg shadow-sm">
                 <CardContent className="p-6">
                   <h4 className="text-2xl font-semibold mb-4 text-mbti-deep-purple">Karier yang Cocok</h4>
-                  <ul className="space-y-1">
+                  <ul className="space-y-0.5">
                     {result.careers.map((career, index) => (
                       <li key={index} className="flex items-start">
                         <span className="text-mbti-deep-purple mr-2">•</span>
