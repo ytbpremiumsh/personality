@@ -28,7 +28,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
           <div className="mb-6 max-w-4l mx-auto">
             <div className="flex items-center mb-4 justify-center">
             </div>
-            <p className="text-gray-700 text-sm sm:text-base text-justify">{result.description}</p>
+            <p className="text-gray-550 text-sm sm:text-base text-justify">{result.description}</p>
           </div>
           
           {/* Personality Chart */}
