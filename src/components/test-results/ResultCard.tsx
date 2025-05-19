@@ -31,11 +31,11 @@ const ResultCard: React.FC<ResultCardProps> = ({
               <h3 className="text-xl font-semibold mx-4">Deskripsi</h3>
               <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
             </div>
-            <p className="text-gray-700 text-sm sm:text-base text-center">{result.description}</p>
+            <p className="text-gray-700 text-sm sm:text-base text-justify">{result.description}</p>
           </div>
           
           {/* Personality Chart */}
-          <div className="mb-6 max-w-4xl mx-auto">
+          <div className="mb-4 max-w-4xl mx-auto">
             <div className="flex items-center mb-4 justify-center">
             </div>
             <PersonalityChart type={result.type} />
