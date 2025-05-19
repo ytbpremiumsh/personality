@@ -123,23 +123,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
         </div>
         
         <CardContent className="p-6 px-[24px] py-[17px]">
-          <div className="mb-6 max-w-3xl mx-auto">
-            <div className="flex items-center mb-4 justify-center">
-              <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-              <h3 className="text-xl font-semibold mx-4">Deskripsi</h3>
-              <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-            </div>
-            <p className="text-gray-700 text-sm sm:text-base text-center">{result.description}</p>
-          </div>
-          
-          {/* Personality Chart */}
-          <div className="mb-6 max-w-4xl mx-auto">
-            <div className="flex items-center mb-4 justify-center">
-            </div>
-            <PersonalityChart type={result.type} />
-          </div>
-          
-          {/* Karakteristik Section */}
+         {/* Karakteristik Section */}
           <div className="mb-6 max-w-4xl mx-auto">
             <div className="flex items-center mb-4 justify-center">
             </div>
