@@ -16,6 +16,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
     <>
       <Card className="mb-8 overflow-hidden">
         <div className="bg-mbti-deep-purple text-white p-6 text-center px-[18px] py-[9px]">
+          <p className="text-xs text-white/80 mb-2">Mau cek kepribadianmu? Cek di <strong>quiz.ruangedukasi.com</strong></p>
           <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
             Tipe Kepribadianmu
           </span>
@@ -36,7 +37,8 @@ const ResultCard: React.FC<ResultCardProps> = ({
             </div>
             <PersonalityChart type={result.type} />
           </div>
-        <p className="text-xs text-white/80 mb-2">Mau cek kepribadianmu? Cek di <strong>quiz.ruangedukasi.com</strong></p>
+          
+         
         </CardContent>
       </Card>
 
