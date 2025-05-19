@@ -37,9 +37,6 @@ const ResultCard: React.FC<ResultCardProps> = ({
           {/* Personality Chart */}
           <div className="mb-6 max-w-3xl mx-auto">
             <div className="flex items-center mb-4 justify-center">
-              <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-              <h3 className="text-xl font-semibold mx-4">Persentase Tipe</h3>
-              <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
             </div>
             <PersonalityChart type={result.type} />
           </div>
@@ -47,9 +44,6 @@ const ResultCard: React.FC<ResultCardProps> = ({
           {/* Karakteristik Section */}
           <div className="mb-6 max-w-4xl mx-auto">
             <div className="flex items-center mb-4 justify-center">
-              <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-              <h3 className="text-xl font-semibold mx-4 text-gray-800">Karakteristik</h3>
-              <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
             </div>
             
             {/* Cards grid for characteristics */}
