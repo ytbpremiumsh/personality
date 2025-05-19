@@ -24,7 +24,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
           <h2 className="text-2xl sm:text-3xl">{result.title}</h2>
         </div>
         
-        <CardContent className="p-6 px-[24px] py-[10px]">
+        <CardContent className="p-6 px-[24px] py-[4px]">
           <div className="mb-6 max-w-3xl mx-auto">
             <div className="flex items-center mb-4 justify-center">
               <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
@@ -116,9 +116,9 @@ const ResultCard: React.FC<ResultCardProps> = ({
         <div className="bg-mbti-deep-purple text-white p-6 text-center px-[24px] py-[24px]">
           <p className="text-xs text-white/80 mb-2">Mau cek kepribadianmu? Cek di <strong>quiz.ruangedukasi.com</strong></p>
           <span className="inline-block px-4 py-2 rounded-full bg-white text-mbti-deep-purple font-semibold mb-4">
-            Karakteristik
+            Karakteristik {result.type}
           </span>
-          <p className="text-xs text-white/80 mb-2">{result.type}<strong>{result.title}</strong></p>
+          <p className="text-xs text-white/80 mb-2"><strong>{result.title}</strong></p>
         </div>
         
         <CardContent className="p-6 px-[24px] py-[17px]">
