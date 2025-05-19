@@ -7,11 +7,9 @@ import { toast } from "sonner";
 import ResultCard from '@/components/test-results/ResultCard';
 import PDFContent from '@/components/test-results/PDFContent';
 import ActionButtons from '@/components/test-results/ActionButtons';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 const TestResult: React.FC = () => {
   const { type } = useParams<{ type: string }>();
-  const isMobile = useIsMobile();
   
   // Default to ISFJ if type is invalid or not found
   const result = type && mbtiResults[type] ? mbtiResults[type] : mbtiResults.ISFJ;
