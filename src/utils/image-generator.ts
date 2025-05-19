@@ -22,7 +22,7 @@ export const generateImage = async (
     element.style.display = 'block';
     
     // Wait for layout to update
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
     const canvas = await html2canvas(element, {
       scale: 2,
@@ -73,7 +73,7 @@ export const generatePDF = async (
     element.style.display = 'block';
     
     // Wait for layout to update - increase timeout to ensure rendering is complete
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
     const canvas = await html2canvas(element, {
       scale: 2,
@@ -98,12 +98,11 @@ export const generatePDF = async (
     
     // Get dimensions
     const imgWidth = 210; // A4 width in mm
-    const pageHeight = 297; // A4 height in mm
     
     // Calculate height based on image ratio and A4 width
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
     
-    // Add image to PDF (centered)
+    // Add image to PDF (top-left corner)
     pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
     
     // Save PDF

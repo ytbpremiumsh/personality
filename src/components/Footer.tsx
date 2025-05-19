@@ -50,14 +50,14 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">Tautan</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
+                <a href="https://quiz.ruangedukasi.com/" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
                   Beranda
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/artikel" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
+                <a href="https://quiz.ruangedukasi.com/artikel" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
                   Artikel Kepribadian
-                </Link>
+                </a>
               </li>
               <li>
                 <Link to="/test" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
@@ -65,9 +65,9 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
+                <a href="https://quiz.ruangedukasi.com/tentang" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
                   Tentang Kami
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -76,9 +76,9 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">Informasi</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
+                <a href="https://quiz.ruangedukasi.com/tentang" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
                   Tentang Kami
-                </Link>
+                </a>
               </li>
               <li>
                 <Link to="/contact" className="text-gray-600 hover:text-mbti-deep-purple transition-colors">
