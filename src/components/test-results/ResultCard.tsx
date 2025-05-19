@@ -44,80 +44,77 @@ const ResultCard: React.FC<ResultCardProps> = ({
             <PersonalityChart type={result.type} />
           </div>
           
-          <Card className="mb-6">
-            <CardContent className="p-4">
-              <div className="flex items-center mb-4">
-                <h3 className="text-xl font-semibold text-gray-800">Karakteristik</h3>
-              </div>
+          {/* Karakteristik Section */}
+          <div className="mb-6">
+            <div className="flex items-center mb-4">
+              <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
+              <h3 className="text-xl font-semibold mx-4 text-gray-800">Karakteristik</h3>
+              <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
+            </div>
+            
+            {/* Cards grid for characteristics */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              {/* Kekuatan Card */}
+              <Card className="border rounded-lg shadow-sm">
+                <CardContent className="p-6">
+                  <h4 className="text-2xl font-semibold mb-4 text-mbti-deep-purple">Kekuatan</h4>
+                  <ul className="space-y-2">
+                    {result.strengths.map((strength, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-mbti-deep-purple mr-2">•</span>
+                        <span>{strength}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
               
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <div className="flex items-center mb-3">
-                      <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-                      <h4 className="text-lg font-semibold mx-4 text-mbti-deep-purple">Kekuatan</h4>
-                      <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-                    </div>
-                    <ul className="space-y-1 text-sm sm:text-base">
-                      {result.strengths.map((strength, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-mbti-deep-purple mr-2">•</span>
-                          <span>{strength}</span>
-                        </li>
-                      ))}
-                    </ul>
+              {/* Tantangan Card */}
+              <Card className="border rounded-lg shadow-sm">
+                <CardContent className="p-6">
+                  <h4 className="text-2xl font-semibold mb-4 text-mbti-deep-purple">Tantangan</h4>
+                  <ul className="space-y-2">
+                    {result.challenges.map((challenge, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-mbti-deep-purple mr-2">•</span>
+                        <span>{challenge}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              {/* Karier Card */}
+              <Card className="border rounded-lg shadow-sm">
+                <CardContent className="p-6">
+                  <h4 className="text-2xl font-semibold mb-4 text-mbti-deep-purple">Karier yang Cocok</h4>
+                  <ul className="space-y-2">
+                    {result.careers.map((career, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-mbti-deep-purple mr-2">•</span>
+                        <span>{career}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              {/* Kecocokan Tipe Card */}
+              <Card className="border rounded-lg shadow-sm">
+                <CardContent className="p-6">
+                  <h4 className="text-2xl font-semibold mb-4 text-mbti-deep-purple">Kecocokan Tipe</h4>
+                  <div className="flex flex-col justify-center h-full">
+                    <p className="text-center">
+                      Tipe kepribadian yang paling cocok denganmu:
+                    </p>
+                    <p className="text-center text-2xl font-bold text-mbti-deep-purple mt-2">
+                      {result.compatibility}
+                    </p>
                   </div>
-                  
-                  <div>
-                    <div className="flex items-center mb-3">
-                      <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-                      <h4 className="text-lg font-semibold mx-4 text-mbti-deep-purple">Tantangan</h4>
-                      <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-                    </div>
-                    <ul className="space-y-1 text-sm sm:text-base">
-                      {result.challenges.map((challenge, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-mbti-deep-purple mr-2">•</span>
-                          <span>{challenge}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <div className="flex items-center mb-3">
-                      <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-                      <h4 className="text-lg font-semibold mx-4 text-mbti-deep-purple">Karier yang Cocok</h4>
-                      <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-                    </div>
-                    <ul className="space-y-1 text-sm sm:text-base">
-                      {result.careers.map((career, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-mbti-deep-purple mr-2">•</span>
-                          <span>{career}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <div className="flex items-center mb-3">
-                      <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-                      <h4 className="text-lg font-semibold mx-4 text-mbti-deep-purple">Kecocokan Tipe</h4>
-                      <Separator className="flex-grow bg-mbti-deep-purple h-[1px]" />
-                    </div>
-                    <div className="flex items-center h-full">
-                      <p className="text-gray-700 text-sm sm:text-base">
-                        Tipe kepribadian yang paling cocok denganmu: <strong className="text-mbti-deep-purple text-lg">{result.compatibility}</strong>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </>
